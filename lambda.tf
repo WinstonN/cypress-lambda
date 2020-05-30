@@ -1,11 +1,11 @@
 provider "aws" {
-  region                  = "us-west-2"
+  region                  = "ap-southeast-2"
   shared_credentials_file = "~/.aws/credentials"
-  profile                 = "default"
+  profile                 = "smashem"
 }
 
-resource "aws_s3_bucket" "cypress_lambda" {
-  bucket = "cypress-lambda"
+resource "aws_s3_bucket" "smashem-cypress-lambda-demo" {
+  bucket = "smashem-cypress-lambda-demo"
   acl    = "private"
 }
 
@@ -16,23 +16,23 @@ data "archive_file" "lambda" {
 }
 
 resource "aws_s3_bucket_object" "lambda" {
-  bucket = "${aws_s3_bucket.cypress_lambda.id}"
+  bucket = "smashem-cypress-lambda-demo"
 
   key    = "lambda.zip"
-  source = "${data.archive_file.lambda.output_path}"
-  etag   = "${md5(file("lambda.zip"))}"
+  source = "lambda.zip"
+  etag   = "md5(file('lambda.zip'))"
+
 }
 
 resource "aws_lambda_function" "cypress_runner" {
   function_name = "cypress_runner"
-  s3_bucket     = "${aws_s3_bucket.cypress_lambda.id}"
-  s3_key        = "${aws_s3_bucket_object.lambda.key}"
+  s3_bucket     = "smashem-cypress-lambda-demo"
+  s3_key        = "lambda.zip"
   role          = "${aws_iam_role.lambda.arn}"
   handler       = "index.handler"
-  runtime       = "nodejs8.10"
+  runtime       = "nodejs10.x"
   memory_size   = 3008
-  source_code_hash = "${md5(file("${data.archive_file.lambda.output_path}"))}"
-  timeout       = 90 
+  timeout       = 300
 }
 
 resource "aws_iam_role" "lambda" {
@@ -78,6 +78,6 @@ EOF
 }
 
 resource "local_file" "lambda_arn" {
-  content  = "${aws_lambda_function.cypress_runner.arn}"
+  content  = "aws_lambda_function.cypress_runner.arn"
   filename = "deployed_lambda_arn"
 }

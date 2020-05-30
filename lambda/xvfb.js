@@ -202,7 +202,7 @@ Xvfb.prototype = {
       // console.log(`Xvfb exec command: [${cmd}]`);
 
       var newEnv = deepClone(process.env);
-      newEnv.LD_LIBRARY_PATH = `/tmp/lib:${newEnv.LD_LIBRARY_PATH}`;
+      newEnv.LD_LIBRARY_PATH = `/tmp/lib:/tmp/lib64:/var/task/lib64:/var/task/lib:${newEnv.LD_LIBRARY_PATH}`;
       console.log("New env: ", newEnv);
       this._process = spawn(this._xvfb_executable, args, { env: newEnv });
       // this._process = exec(cmd);

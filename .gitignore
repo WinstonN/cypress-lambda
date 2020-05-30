@@ -11,3 +11,4 @@ node_modules/*
 reports/*
 mochawesome-report/*
 mochawesome.json
+.DS_Store

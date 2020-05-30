@@ -84,8 +84,6 @@ do
   esac
 done
 
-
-
 if [ "1" -eq "$DIST_DEPS"  ]; then
   NOTHING_RUN=0
   echo ">>> Installing dependencies available in Amazon Linux ..."
@@ -102,8 +100,6 @@ if [ "1" -eq "$DIST_DEPS"  ]; then
   echo ">>> Done."
 fi
 
-
-
 if [ "1" -eq  "$CENTOS_DEPS" ]; then
   NOTHING_RUN=0
   echo ">>> Installing deps available in CentOS 6..."
@@ -112,13 +108,55 @@ if [ "1" -eq  "$CENTOS_DEPS" ]; then
   rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/atk-1.30.0-1.el6.x86_64.rpm
   rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/atk-devel-1.30.0-1.el6.x86_64.rpm
   rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/libXScrnSaver-1.2.2-2.el6.x86_64.rpm
-
+  rpm -ivh https://rpmfind.net/linux/centos/6.10/os/x86_64/Packages/elfutils-libelf-0.164-2.el6.i686.rpm
+  rpm -ivh https://rpmfind.net/linux/centos/7.8.2003/os/x86_64/Packages/elfutils-libelf-0.176-4.el7.x86_64.rpm
+  
   # ORBit is requried to compile GConf
   rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/ORBit2-2.14.17-7.el6.x86_64.rpm
   rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/ORBit2-devel-2.14.17-7.el6.x86_64.rpm
   echo ">>> Done."
 fi
 
+if [ "1" -eq  "$CENTOS_DEPS" ]; then
+  NOTHING_RUN=0
+  echo ">>> Installing deps available in CentOS 7..."
+
+#   sleep 2
+  # rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/atk-1.30.0-1.el6.x86_64.rpm
+  # rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/atk-devel-1.30.0-1.el6.x86_64.rpm
+  # rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/libXScrnSaver-1.2.2-2.el6.x86_64.rpm
+  # rpm -ivh https://rpmfind.net/linux/centos/6.10/os/x86_64/Packages/elfutils-libelf-0.164-2.el6.i686.rpm
+  # rpm -ivh https://rpmfind.net/linux/centos/7.8.2003/os/x86_64/Packages/elfutils-libelf-0.176-4.el7.x86_64.rpm
+  
+  # ORBit is requried to compile GConf
+  # rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/ORBit2-2.14.17-7.el6.x86_64.rpm
+  # rpm -ivh http://mirror.centos.org/centos/6/os/x86_64/Packages/ORBit2-devel-2.14.17-7.el6.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/ORBit2-2.14.19-13.el7.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/ORBit2-devel-2.14.19-13.el7.x86_64.rpm
+
+  # Centos 7 Deps
+  # Install ATK from CentOS 7
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/atk-2.28.1-2.el7.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/atk-devel-2.28.1-2.el7.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/elfutils-libelf-0.176-4.el7.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/elfutils-libelf-0.176-4.el7.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/elfutils-libelf-devel-0.176-4.el7.x86_64.rpm
+  # rpm -ivh --nodeps http://mirror.centos.org/centos/7/os/x86_64/Packages/at-spi2-atk-2.26.2-1.el7.x86_64.rpm
+  # rpm -ivh --nodeps http://mirror.centos.org/centos/7/os/x86_64/Packages/at-spi2-core-2.28.0-1.el7.x86_64.rpm
+
+# Install GTK from fedora 20
+  rpm -ivh http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/20/Fedora/x86_64/os/Packages/g/GConf2-3.2.6-7.fc20.x86_64.rpm
+  rpm -ivh http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/20/Fedora/x86_64/os/Packages/l/libXScrnSaver-1.2.2-6.fc20.x86_64.rpm
+  rpm -ivh http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/20/Fedora/x86_64/os/Packages/l/libxkbcommon-0.3.1-1.fc20.x86_64.rpm
+  rpm -ivh http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/20/Fedora/x86_64/os/Packages/l/libwayland-client-1.2.0-3.fc20.x86_64.rpm
+  rpm -ivh http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/20/Fedora/x86_64/os/Packages/l/libwayland-cursor-1.2.0-3.fc20.x86_64.rpm
+  rpm -ivh http://dl.fedoraproject.org/pub/archive/fedora/linux/releases/20/Fedora/x86_64/os/Packages/g/gtk3-3.10.4-1.fc20.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/pango-1.42.4-4.el7_7.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/cairo-devel-1.15.12-4.el7.x86_64.rpm
+  rpm -ivh http://mirror.centos.org/centos/7/os/x86_64/Packages/cairo-gobject-devel-1.15.12-4.el7.x86_64.rpm
+
+  echo ">>> Done."
+fi
 
 if [ "1" -eq "$DEV_TOOLS" ]; then
   NOTHING_RUN=0
@@ -134,7 +172,8 @@ if [ "1" -eq "$GCONF_COMPILE" ]; then
 #   sleep 3
 
     cd /tmp
-    wget ftp://ftp.gnome.org/pub/GNOME/sources/GConf/2.32/GConf-2.32.4.tar.bz2
+    # wget ftp://ftp.gnome.org/pub/GNOME/sources/GConf/2.32/GConf-2.32.4.tar.bz2
+    wget https://download.gnome.org/sources/GConf/2.32/GConf-2.32.4.tar.bz2
     tar -jxvf GConf-2.32.4.tar.bz2
     cd GConf-2.32.4
     ./configure && make
